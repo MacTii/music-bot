@@ -28,7 +28,7 @@ src/
    - copy the **bot token**
    - in *Bot → Privileged Gateway Intents* enable **Message Content Intent** (needed for `$` prefix commands)
    - invite the bot to your server with the `bot` and `applications.commands` scopes
-2. Clone the repository: `git clone https://github.com/MacTii/MusicBOT.git`
+2. Clone the repository: `git clone https://github.com/MacTii/music-bot.git`
 3. Create and activate a virtual environment: `python -m venv venv`
 4. Install dependencies: `pip install -r requirements.txt`
 5. Copy `.env.example` to `.env` and paste your bot token

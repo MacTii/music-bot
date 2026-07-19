@@ -1,37 +1,51 @@
 # Discord music-bot
 
-A simple discord bot that handles messages from the client. The client sends command and the bot find url of music and starts it.
+A simple Discord bot that plays music from YouTube (via `yt-dlp`).
+Every command works both as a classic prefix command (`$play`) and as a slash command (`/play`).
 
-## Important python packages
+## Project structure
 
-- discord
-- dotenv
-- youtube_dl
-- ffmpeg-python
-- PyNaCl
+```
+src/
+  main.py          # entry point
+  bot.py           # MusicBot class, cog loading, slash command sync
+  config.py        # paths, .env loading, ffmpeg lookup
+  voice_utils.py   # shared voice-channel helpers
+  cogs/
+    music.py       # /play /join /pause /resume /stop /disconnect
+    general.py     # /ping /kick
+```
 
-## How to setup Discord Music Bot
+## Requirements
 
-1. Copy paste this link [Discord Developer Portal](https://discord.com/developers/applications) (it will direct you to create new application in this case bot)
-    - click *New Application*
-    - setup your music bot
-    - **copy bot token** (important in next steps)
-    - add bot to your server
-2. Download project from repository:
-    - copy repo using git commands ```git clone https://github.com/MacTii/music-bot.git```
-    - download it as a ZIP
-3. Create virtual environment in your project, use command e.g. *python -m venv venv*
-4. Install all packages using command **pip** e.g. ```pip install discord```
-5. Create **.env** file in HOME_PROJECT directory e.g. *HOME_PROJECT/.env*
-    - setup your token for bot and channel id
-6. Start script *main.py*
-    - if it's not working try to install *https://ffmpeg.org/download.html*
-    - get **ffmpeg.exe** file and put it in *HOME_PROJECT/venv/Scripts*
-7. Join voice channel
-8. Write the necessary commands to communicate with the bot
-    - type in discord channel ```$join``` (bot will join your voice channel)
-    - type ```$play MUSIC_URL``` e.g. *$play https://www.youtube.com/watch?v=UT8cmozrUFw* (bot will play music)
-    - u can pause or resume music bot if u want typing ```$resume``` or ```$pause```
-    - u can disconnect bot typing ```$disconnect```
+- Python 3.10+ (3.13 recommended; discord.py voice needs the `davey` package, which has no wheels for older versions)
+- ffmpeg (`ffmpeg.exe` in `venv/Scripts` or on PATH - download from <https://ffmpeg.org/download.html>)
+- Packages from `requirements.txt`
+
+## Setup
+
+1. Create the bot application at the [Discord Developer Portal](https://discord.com/developers/applications):
+   - click *New Application* and add a *Bot* to it
+   - copy the **bot token**
+   - in *Bot → Privileged Gateway Intents* enable **Message Content Intent** (needed for `$` prefix commands)
+   - invite the bot to your server with the `bot` and `applications.commands` scopes
+2. Clone the repository: `git clone https://github.com/MacTii/MusicBOT.git`
+3. Create and activate a virtual environment: `python -m venv venv`
+4. Install dependencies: `pip install -r requirements.txt`
+5. Copy `.env.example` to `.env` and paste your bot token
+6. Run the bot: `python src/main.py`
+
+## Commands
+
+| Command | Description |
+| --- | --- |
+| `/play <url or search>` | Play audio from a YouTube URL or search phrase |
+| `/join` | Join your current voice channel |
+| `/pause`, `/resume`, `/stop` | Control playback |
+| `/disconnect` | Leave the voice channel |
+| `/ping` | Latency check |
+| `/kick <member>` | Kick a member (requires permissions) |
+
+All commands also work with the `$` prefix, e.g. `$play never gonna give you up`.
 
 Enjoy your music with bot :D

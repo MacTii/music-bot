@@ -1,10 +1,10 @@
-import music_bot, discord_version, environment_variables
+from bot import MusicBot
+from config import load_token
 
 
-def main():
-    discord_version.show_discord_version()
-    environment_variables.load_environment_variables()
-    music_bot.run_music_bot()
+def main() -> None:
+    token = load_token()
+    MusicBot().run(token)
 
 
 if __name__ == "__main__":

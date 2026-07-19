@@ -13,7 +13,7 @@ src/
   voice_utils.py   # shared voice-channel helpers
   cogs/
     music.py       # /play /join /pause /resume /stop /disconnect
-    general.py     # /ping /kick
+    general.py     # /ping
 ```
 
 ## Requirements
@@ -44,7 +44,6 @@ src/
 | `/pause`, `/resume`, `/stop` | Control playback |
 | `/disconnect` | Leave the voice channel |
 | `/ping` | Latency check |
-| `/kick <member>` | Kick a member (requires permissions) |
 
 All commands also work with the `$` prefix, e.g. `$play never gonna give you up`.
 

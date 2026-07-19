@@ -1,12 +1,12 @@
 """YouTube playback commands."""
 import asyncio
+from typing import Optional
 
 import discord
 import yt_dlp
 from discord.ext import commands
 
 from config import find_ffmpeg
-from voice_utils import ensure_voice
 
 YDL_OPTIONS = {
     "format": "bestaudio/best",
@@ -19,6 +19,16 @@ FFMPEG_OPTIONS = {
     "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5",
     "options": "-vn",
 }
+
+
+async def ensure_voice(ctx: commands.Context) -> Optional[discord.VoiceClient]:
+    """Return a voice client, connecting to the author's channel if needed."""
+    if ctx.voice_client:
+        return ctx.voice_client
+    if ctx.author.voice and ctx.author.voice.channel:
+        return await ctx.author.voice.channel.connect()
+    await ctx.send("Join a voice channel first.")
+    return None
 
 
 class Music(commands.Cog):

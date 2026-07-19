@@ -7,7 +7,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-SOUNDS_DIR = PROJECT_ROOT / "sounds"
 
 COMMAND_PREFIX = "$"
 

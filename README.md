@@ -10,7 +10,6 @@ src/
   main.py          # entry point
   bot.py           # MusicBot class, cog loading, slash command sync
   config.py        # paths, .env loading, ffmpeg lookup
-  voice_utils.py   # shared voice-channel helpers
   cogs/
     music.py       # /play /join /pause /resume /stop /disconnect
     general.py     # /ping

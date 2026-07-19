@@ -170,7 +170,3 @@ cython_debug/
 # Ignore all local history of files
 .history
 .ionide
-# local files
-sounds/
-*.mp3
-venv_py39_backup/
